@@ -17,7 +17,7 @@ function Get-AutoPSSession1
 
 	$Arglist = '-noexit', '-noprofile', {
 	$execline = @'
-$Host.ui.RawUI.WindowTitle= '*** [POSHSession-SQLMethod1_SqlClienta] ***'
+$Host.ui.RawUI.WindowTitle= '*** [PSSession-SqlClienta] ***'
 '@;
 		Invoke-Expression $execline; Read-Host "Press Enter to continue!";
 		function Get-HelloWorld1
@@ -34,15 +34,20 @@ $Host.ui.RawUI.WindowTitle= '*** [POSHSession-SQLMethod1_SqlClienta] ***'
 			Get-ChildItem -Path $enterfolder | Out-File -FilePath "C:\Temp\Folderlist.txt";
 			
 		};
-## - add list of funtions:
-	Get-HelloWorld1
-	Get-folderlist -enterfolder "C:\temp"
-	Invoke-Item "C:\Temp\Folderlist.txt";
-	. c:\SQLSaturdaySFL\Sample-SQLMethod1_SqlClienta.ps1;
-	
-	exit
+		
+		## - Add list of funtions andd execute Script file:
+		## -
+		Get-HelloWorld1;
+		Get-folderlist -enterfolder "C:\temp";
+		Invoke-Item "C:\Temp\Folderlist.txt";
+		
+		. c:\SQLSaturdaySFL-PSObject_2023\Sample-SQLMethod1_SqlClienta.ps1;
+		
+		## - Comment the line below if you want this session prompt to remain open:
+		exit
 };
 Start-Process powershell -ArgumentList $Arglist;
-	exit
+
 };
 
+Get-AutoPSSession1;
